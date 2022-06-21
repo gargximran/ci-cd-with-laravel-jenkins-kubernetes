@@ -3,7 +3,7 @@ FROM gargximran/php8-with-composer:1.3
 WORKDIR /var/www/app/
 
 
-COPY ../src/ .
+COPY . .
 
 RUN mv /var/www/app/000-default.conf /etc/apache2/sites-enabled/
 
@@ -13,6 +13,7 @@ EXPOSE 80
 
 RUN composer update --no-dev
 
+RUN php artisan key:generate
 
 
 ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
