@@ -4,9 +4,12 @@ pipeline {
     stage('Deploy to kubernetes r') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-           
-            sh "sh infra/script.sh ${env.dockerHubUser}/laravel-application-one-bs:jenkins-build-${env.BUILD_NUMBER}"
-            sh "cat infra/deployment.yaml"
+           script {
+             def text = readFile file: "infra/deployment.yaml"
+            text = text.replaceAll("%IMAGE_ONE%", "${env.dockerHubUser}/laravel-application-one-bs:jenkins-build-${env.BUILD_NUMBER}")
+            writeFile file: "infra/deployment.yaml", text: text
+           }          
+          sh "cat infra/deployment.yaml"
             
         }
       }
