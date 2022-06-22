@@ -13,9 +13,9 @@ pipeline {
         }
 
         sshagent(credentials : ['kubernetes_control_plane_cred']) {
-            sh 'ssh -o StrictHostKeyChecking=no ubuntu@$env.kubectl_client_server_ip "mkdir -p kubernetes/jenkins"'            
-            sh 'scp infra/deployment.yaml ubuntu@$env.kubectl_client_server_ip:kubernetes/jenkins/deployment.yaml'
-            sh 'ssh -o StrictHostKeyChecking=no ubuntu@$env.kubectl_client_server_ip "kubectl apply -f kubernetes/jenkins/deployment.yaml' 
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@$kubectl_client_server_ip "mkdir -p kubernetes/jenkins"'            
+            sh 'scp infra/deployment.yaml ubuntu@$kubectl_client_server_ip:kubernetes/jenkins/deployment.yaml'
+            sh 'ssh -o StrictHostKeyChecking=no ubuntu@$kubectl_client_server_ip "kubectl apply -f kubernetes/jenkins/deployment.yaml' 
         }
       }
     }
