@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: application-two-service
+spec:
+  selector:
+    app: application-two
+    tech: laravel-9
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

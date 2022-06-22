@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-one-deployment
+  labels:
+    app: application-one-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-one
+      tech: laravel-9
+  template:
+    metadata:
+      labels:
+        app: application-one
+        tech: laravel-9
+    spec:
+      # nodeSelector:
+      #   level: one 
+      containers:     
+      - name: application-one
+        image: gargximran/laravel-application-one-bs:jenkins.build.5
+        ports:
+        - containerPort: 80

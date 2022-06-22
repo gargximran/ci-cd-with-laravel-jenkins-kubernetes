@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-two-deployment
+  labels:
+    app: application-two-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-two
+      tech: laravel-9
+  template:
+    metadata:
+      labels:
+        app: application-two
+        tech: laravel-9
+    spec:
+      # nodeSelector:
+      #   level: two 
+      containers:
+      - name: application-two
+        image:  gargximran/laravel-application-two-bs:jenkins.build.5
+        ports:
+        - containerPort: 80
