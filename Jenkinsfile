@@ -36,8 +36,12 @@ pipeline {
 
     stage('Docker Remove Images') {
       steps {
-        sh "docker rmi ${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}"
-        sh "docker rmi ${env.dockerHubUser}/laravel-application-two-bs:jenkins.build.${env.BUILD_NUMBER}"
+
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh "docker rmi ${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}"
+            sh "docker rmi ${env.dockerHubUser}/laravel-application-two-bs:jenkins.build.${env.BUILD_NUMBER}"
+        }
+        
       }
     }
     
