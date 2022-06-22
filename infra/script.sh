@@ -1,0 +1,1 @@
+sed -i "s/IMAGE_ONE/${1}/g" infra/deployment.yaml 

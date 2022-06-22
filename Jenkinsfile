@@ -4,11 +4,9 @@ pipeline {
     stage('Deploy to kubernetes r') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh"""
-              sed -i 's/${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}/IMAGE_ONE/g' infra/deployment.yaml
-              cat infra/deployment.yaml
-
-            """
+           
+            sh "sh infra/script.sh ${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}"
+            sh "cat infra/deployment.yaml"
             
         }
       }
