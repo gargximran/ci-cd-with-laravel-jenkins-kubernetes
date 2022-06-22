@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-one-deployment
+  labels:
+    app: application-one-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-one
+      tech: laravel-9
+  template:
+    metadata:
+      labels:
+        app: application-one
+        tech: laravel-9
+    spec:
+      nodeSelector:
+        level: one 
+      containers:     
+      - name: application-one
+        image: IMAGE_ONE
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-two-deployment
+  labels:
+    app: application-two-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: application-two
+      tech: laravel-9
+  template:
+    metadata:
+      labels:
+        app: application-two
+        tech: laravel-9
+    spec:
+      nodeSelector:
+        level: two 
+      containers:
+      - name: application-two
+        image:  IMAGE_TWO
+        ports:
+        - containerPort: 80
