@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Deploy to kubernetes') {
+    stage('Deploy to kubernetes r') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh 'sed "s/{{env.dockerHubUser}}/laravel-application-one-bs:jenkins.build.{{env.BUILD_NUMBER}}/IMAGE_ONE/g" infra/deployment.yaml'
