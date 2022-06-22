@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage("test") {
             steps {
-                echo "hello world!"
+                ssh --help
+                scp --help
             }
         }
     }
