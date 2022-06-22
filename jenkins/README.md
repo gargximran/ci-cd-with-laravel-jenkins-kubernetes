@@ -67,6 +67,32 @@ Script Path: Jenkinsfile
 ```
 
 
+
+### > Step Five
+if you want to intigrate kubectl controlplate in cluster then follow this steps.
+
+
+    Install this Plugin > ***SSH Agent***
+#####Set Credential for Server access
+    Scope: Global
+    ID: kubernetes_control_plane_cred
+    Username: as your
+    Private Key: your private key for server
+
+
+***Manage Jenkins > Configure System > Global Properties > Environment Variable > Add ***
+
+```
+Name: kubectl_client_server_ip
+Value: your cluster ip
+
+
+---
+Name: kubectl_client_server_username
+Value: your cluster username
+```
+
+
 ### > Step Five
 Got to inside the job and Press on ***Build Now***
 Pipeline will start 
