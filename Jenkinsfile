@@ -5,7 +5,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
            
-            sh "sh infra/script.sh ${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}"
+            sh "sh infra/script.sh ${env.dockerHubUser}/laravel-application-one-bs:jenkins-build-${env.BUILD_NUMBER}"
             sh "cat infra/deployment.yaml"
             
         }
