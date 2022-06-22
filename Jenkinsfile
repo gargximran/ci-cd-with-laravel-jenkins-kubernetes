@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
-    docker
-
     stages {
         stage("test") {
             steps {
