@@ -3,8 +3,11 @@ pipeline {
     stages {
         stage("test") {
             steps {
-                sh "ls"
-                sh "docker -v"
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
+                        def dockerImage = docker.build('gargximran/laravelw:jenkins.${env.BUILD_NUMBER}')
+                    }
+                }
             }
         }
     }
