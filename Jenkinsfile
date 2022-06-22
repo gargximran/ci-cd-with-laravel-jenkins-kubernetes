@@ -1,6 +1,17 @@
 pipeline {
   agent any
   stages {
+    stage('Deploy to kubernetes') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+            sh 'sed "s/{{env.dockerHubUser}}/laravel-application-one-bs:jenkins.build.{{env.BUILD_NUMBER}}/IMAGE_ONE/g" infra/deployment.yaml'
+            sh 'sed "s/{{env.dockerHubUser}}/laravel-application-two-bs:jenkins.build.{{env.BUILD_NUMBER}}/IMAGE_TWO/g" infra/deployment.yaml'
+
+            sh "cat infra/deployment.yaml"
+            
+        }
+      }
+    }
     stage('Docker Build Application One') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
