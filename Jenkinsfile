@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage("test") {
             steps {
-                ssh --help
-                scp --help
+                sh "ssh --help"
+                sh "scp --help"
             }
         }
     }
