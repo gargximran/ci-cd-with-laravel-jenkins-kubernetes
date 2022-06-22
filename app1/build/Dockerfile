@@ -7,6 +7,8 @@ COPY . .
 
 RUN mv /var/www/app/000-default.conf /etc/apache2/sites-enabled/
 
+RUN mv /var/www/app/.env.example /var/www/app/.env
+
 RUN chown -R www-data:www-data /var/www/app
 
 EXPOSE 80
