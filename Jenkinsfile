@@ -44,10 +44,10 @@ pipeline {
 }
 post {
     success {
-      sh echo "Pipeline is successfully completed."
+      sh "echo 'Pipeline is successfully completed.'"
     }
     failure {
-      sh echo "Pipeline failed. Please check the logs."
+      sh" echo 'Pipeline failed. Please check the logs.'"
     }
 }
 }
