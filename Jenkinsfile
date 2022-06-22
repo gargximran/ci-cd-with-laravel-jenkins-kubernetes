@@ -5,7 +5,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh"""
-              sed "s/${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}/IMAGE_ONE/g" infra/deployment.yaml
+              sed -i 's/${env.dockerHubUser}/laravel-application-one-bs:jenkins.build.${env.BUILD_NUMBER}/IMAGE_ONE/g' infra/deployment.yaml
               cat infra/deployment.yaml
 
             """
