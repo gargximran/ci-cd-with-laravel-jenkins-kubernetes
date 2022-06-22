@@ -16,8 +16,8 @@ spec:
         app: application-two
         tech: laravel-9
     spec:
-      # nodeSelector:
-      #   level: two 
+      nodeSelector:
+        level: two 
       containers:
       - name: application-two
         image:  gargximran/laravel-application-two-bs:jenkins.build.5

@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+    jeninks-with-docker:
+        build: .
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        group_add:
+            - 0
+        ports:
+            - "8080:8080"
+    
